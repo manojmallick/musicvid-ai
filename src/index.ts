@@ -216,16 +216,14 @@ Return JSON:
   ): Promise<MusicVideo> {
     fs.mkdirSync(outputDir, { recursive: true });
 
+    const themeBrief = await this.analyzeTheme(title, artistStyle, mood, lyrics);
     const video: MusicVideo = {
       songTitle: title,
       artistStyle,
       mood,
       durationSeconds,
-      themeBrief: await this.analyzeTheme(title, artistStyle, mood, lyrics),
-      shots: await this.createShotList(
-        await this.analyzeTheme(title, artistStyle, mood, lyrics),
-        durationSeconds
-      ),
+      themeBrief,
+      shots: await this.createShotList(themeBrief, durationSeconds),
       editPlan: {},
       manifestPath: "",
     };
