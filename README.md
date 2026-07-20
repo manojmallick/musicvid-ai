@@ -10,8 +10,6 @@
 
 Give it a song title, artist style, mood, and (optionally) lyrics — it thinks like a director: extracts the visual theme, storyboards a timed shot list, writes cinematic text-to-video prompts, generates clips via **Wan 2.1**, quality-checks each one, and produces a final edit plan and manifest ready for an editor (or an automated cut).
 
-Built by a musician who runs [@creativeartistscorner](https://www.youtube.com/@creativeartistscorner) and needs music videos for real releases.
-
 ---
 
 ## Table of Contents
