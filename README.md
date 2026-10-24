@@ -93,6 +93,40 @@ musicvid_output/
 └── manifest.json           # theme brief, timed shots, quality scores, edit plan
 ```
 
+## Use Your Own Song
+
+`npm run dev` runs a demo for "Fade Into You". To direct your own video, build the project and call the class from your code:
+
+```ts
+import { MusicVidAI } from "./dist/index";
+
+const ai = new MusicVidAI();
+const video = await ai.produce(
+  "Song title",
+  "Artist style",     // e.g. "dreamy shoegaze"
+  "melancholic",      // mood
+  60,                 // target duration in seconds
+  "optional lyrics",
+  "musicvid_output"   // output directory (default)
+);
+console.log(video.manifestPath, video.shots.length);
+```
+
+`produce()` runs all five stages and writes `manifest.json` (plus clips, or prompt placeholders in simulation mode) to the output directory. The individual stages (`analyzeTheme`, `createShotList`, `shotToWanPrompt`, `generateClips`, `createEditPlan`) are public if you want to run them separately.
+
+### Scripts
+
+| Command | What it does |
+|---|---|
+| `npm run dev` | Run `src/index.ts` with ts-node (the built-in demo) |
+| `npm run build` | Compile TypeScript to `dist/` |
+| `npm start` | Run the compiled build (`node dist/index.js`) |
+
+### Limitations
+
+- The command-line entry point only runs the built-in demo; to use your own input, call the class from your code as shown above.
+- There are no automated tests. Quality depends on the Qwen model's output, which varies between runs.
+
 ## Project Structure
 
 ```
